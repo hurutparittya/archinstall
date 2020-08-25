@@ -108,7 +108,7 @@ echo $HNAME >> /mnt/etc/hostname
     echo locale-gen                                # generate locales
     echo ln -sf ${TIMEZONE} /etc/localtime         # link the timezone to the config directory 
     echo hwclock --systohc                         # copy system to hardware clock     
-    echo pacman -S --noconfirm networkmanager grub # install the networkmanager and grub packages
+    echo pacman -S --noconfirm networkmanager grub git # install the networkmanager, git and grub packages
     echo systemctl enable NetworkManager           # enable the NetworkManager service
     echo grub-install --target=i386-pc $TARGET     # install the grub bootloader
     echo grub-mkconfig -o /boot/grub/grub.cfg      # make grub config
