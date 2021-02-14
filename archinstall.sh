@@ -67,13 +67,13 @@ echo q # quit
 ) | fdisk -w always $TARGET
 
 # make the filesystem and swap if applicable
-mkfs.ext4 -F ${TARGET}p1
+mkfs.ext4 -F ${TARGET}1
 if [ $SWAPPERCENT -ne 0 ]; then
-    mkswap ${TARGET}p2
-    swapon ${TARGET}p2
-    mkfs.ext4 -F ${TARGET}p3
+    mkswap ${TARGET}2
+    swapon ${TARGET}2
+    mkfs.ext4 -F ${TARGET}3
 else
-    mkfs.ext4 -F ${TARGET}p2
+    mkfs.ext4 -F ${TARGET}2
 fi
 
 # make sure nothing is mounted on /mnt
@@ -81,12 +81,12 @@ umount -R /mnt
 
 # mount the boot and root partitions
 if [ $SWAPPERCENT -ne 0 ]; then
-    mount ${TARGET}p3 /mnt
+    mount ${TARGET}3 /mnt
 else
-    mount ${TARGET}p2 /mnt
+    mount ${TARGET}2 /mnt
 fi
 mkdir /mnt/boot
-mount ${TARGET}p1 /mnt/boot
+mount ${TARGET}1 /mnt/boot
 
 # install the Arch base and some useful packages
 pacstrap /mnt base base-devel linux linux-firmware
